@@ -24,7 +24,7 @@ class App extends Component {
     }
 
     cancel() {
-        CallEvent('Cancel');
+        CallEvent('HidePanel');
     }
 
     render() {
