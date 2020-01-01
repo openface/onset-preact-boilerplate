@@ -37,9 +37,12 @@ class App extends Component {
                 {},
                 `This is a description.`
             ),
-            h(rangeInput, {
-                state: this.state,
-                inputChange: this.inputChange.bind(this)
+            h('input', {
+                type: 'range',
+                value: this.state.redeem,
+                min: 1,
+                max: 5,
+                oninput: this.inputChange.bind(this)
             }),
             h(
                 'div',
@@ -59,15 +62,5 @@ class App extends Component {
         );
     }
 }
-
-const rangeInput = ({ state, inputChange }) => {
-    return h('input', {
-        type: 'range',
-        value: state.redeem,
-        min: 1,
-        max: 5,
-        oninput: inputChange.bind(this)
-    });
-};
 
 render(h(App), document.querySelector('#render'));
