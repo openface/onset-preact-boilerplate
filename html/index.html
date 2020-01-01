@@ -1,36 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>htm Demo</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
-<script>
-    if (typeof ue === 'undefined') {
-        // for browser testing outside of game
-        ue = { game: { callevent: console.log } };
-    }
-    (function (obj) {
-        ue.game = {};
-        ue.game.callevent = function (name, ...args) {
-            if (typeof name != "string") {
-                return;
-            }
-            if (args.length == 0) {
-                obj.callevent(name, "")
-            } else {
-                let params = []
-                for (let i = 0; i < args.length; i++) {
-                    params[i] = args[i];
+    <script>
+        if (typeof ue === 'undefined') {
+            // for browser testing outside of game
+            ue = { game: { callevent: console.log } };
+        }
+        (function (obj) {
+            ue.game = {};
+            ue.game.callevent = function (name, ...args) {
+                if (typeof name != "string") {
+                    return;
                 }
-                obj.callevent(name, JSON.stringify(params));
-            }
-        };
-    })(ue.game);
-    CallEvent = ue.game.callevent;
-</script>
+                if (args.length == 0) {
+                    obj.callevent(name, "")
+                } else {
+                    let params = []
+                    for (let i = 0; i < args.length; i++) {
+                        params[i] = args[i];
+                    }
+                    obj.callevent(name, JSON.stringify(params));
+                }
+            };
+        })(ue.game);
+        CallEvent = ue.game.callevent;
+    </script>
 </head>
 
 <script type="module">
-
     import { html, Component, render } from './preact_htm.min.js';
 
     class App extends Component {
@@ -60,18 +57,20 @@
 
         render() {
             return html`
-                <div class="menu" id="render"><div class="atmPage">
+            <div id="render">
+                <div class="panel">
                     <h2>Welcome to the modal</h2>
-                <p>This is a description.</p>
-                <input type="range"
-                    value="${this.state.redeem}"
-                    min="1"
-                    max="5"
-                    oninput="${this.inputChange.bind(this)}" />
-                <div class"redeemTitle">Redeeming: ${this.state.redeem} Points</div>
-                <button class="submit" onclick="${this.submit.bind(this)}">Submit</button>
-                <button class="cancel" onclick="${this.cancel.bind(this)}">Cancel</button>
-            </div></div>
+                    <p>This is a description.</p>
+                    <input type="range"
+                        value="${this.state.redeem}"
+                        min="1"
+                        max="5"
+                        oninput="${this.inputChange.bind(this)}" />
+                    <div class"redeemTitle">Redeeming: ${this.state.redeem} Points</div>
+                    <button class="submit" onclick="${this.submit.bind(this)}">Submit</button>
+                    <button class="cancel" onclick="${this.cancel.bind(this)}">Cancel</button>
+                </div>
+            </div>
             `;
         }
     }

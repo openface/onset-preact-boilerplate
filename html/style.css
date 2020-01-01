@@ -17,24 +17,19 @@ html {
     width: 500px;
     height: 100%;
     margin: 0 auto;
-}
-
-.menu {
     display: flex;
-    justify-content: center;
-    justify-items: center;
     align-items: center;
     align-content: center;
 }
 
-.menu .atmPage {
+#render .panel {
     width: 100%;
     background: #333333;
     padding: 10px;
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.menu .atmPage h2 {
+#render .panel h2 {
     font-size: 18px;
     text-align: center;
     margin-top:0;
