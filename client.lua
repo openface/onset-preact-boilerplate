@@ -28,10 +28,10 @@ function HidePanel()
 	ShowMouseCursor(false)
 	SetInputMode(INPUT_GAME)
 end
-AddEvent("HidePanel", HidePanel)
+AddEvent("panel:HidePanel", HidePanel)
 
 function Submit(points)
-	CallRemoteEvent('atm:Redeem', points);
-	CallEvent("HidePanel")
+	CallRemoteEvent('panel:Submit', points);
+	CallEvent("panel:HidePanel")
 end
-AddEvent("Submit", Submit)
+AddEvent("panel:Submit", Submit)

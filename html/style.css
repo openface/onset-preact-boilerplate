@@ -6,7 +6,6 @@ html {
     padding: 0;
     background: transparent;
     font-family: 'Arial';
-    user-select: none;
     color: white;
 }
 
@@ -21,17 +20,54 @@ html {
     align-content: center;
 }
 
-#render .panel {
-    width: 100%;
-    background: #333333;
-    padding: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-#render .panel h2 {
+#render form h2 {
     font-size: 18px;
     text-align: center;
     margin-top:0;
     margin-bottom: 20px;
 }
 
+#render form {
+    width: 100%;
+    background: #333333;
+    padding: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+#render form div {
+    padding:10px 0;
+    display: flex;
+    align-items: center;
+}
+
+#render form div label {
+    order: 1;
+    width: 10em;
+    padding-right: 0.5em;
+    font-weight: bold;
+}
+
+#render form h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-top:0;
+    margin-bottom: 20px;
+}
+
+input, textarea, select {
+    padding:5px;
+    order: 2;
+    flex: 1 1 auto;
+}
+
+button {
+    padding:5px;
+    background:#4CAF50;
+    color:#fff;
+    flex: 1 1 auto;
+    margin:0 5px;
+}
+
+button:hover {
+    cursor: pointer;
+}

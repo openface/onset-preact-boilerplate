@@ -34,7 +34,7 @@
         constructor(props) {
             super(props);
             this.state = {
-                redeem: 3
+                cash: 3
             };
         }
 
@@ -44,32 +44,42 @@
 
         inputChange(e) {
             const value = e.target.value;
-            this.setState({ redeem: value });
+            this.setState({ cash: value });
         }
 
         submit() {
-            CallEvent('Submit', this.state.redeem);
+            CallEvent('panel:Submit', this.state.cash);
         }
 
         cancel() {
-            CallEvent('HidePanel');
+            CallEvent('panel:HidePanel');
         }
 
         render() {
             return html`
             <div id="render">
-                <div class="panel">
-                    <h2>Welcome to the modal</h2>
+                <form>
+                    <h2>Preact Boilerplate with Onset Example</h2>
                     <p>This is a description.</p>
-                    <input type="range"
-                        value="${this.state.redeem}"
-                        min="1"
-                        max="5"
-                        oninput="${this.inputChange.bind(this)}" />
-                    <div class"redeemTitle">Redeeming: ${this.state.redeem} Points</div>
-                    <button class="submit" onclick="${this.submit.bind(this)}">Submit</button>
-                    <button class="cancel" onclick="${this.cancel.bind(this)}">Cancel</button>
-                </div>
+                    <div>
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" />
+                    </div>
+                    <div>
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" />
+                    </div>
+                    <div>
+                        <label for="cash">Starting Cash: $${this.state.cash}</label>
+                        <input type="range" id="cash" name="cash" min="1" max="5"
+                            value="${this.state.cash}"
+                            oninput="${this.inputChange.bind(this)}" />
+                    </div>
+                    <div>
+                        <button class="submit" onclick="${this.submit.bind(this)}">Submit</button>
+                        <button class="cancel" onclick="${this.cancel.bind(this)}">Cancel</button>
+                    </div>
+                </form>
             </div>
             `;
         }
