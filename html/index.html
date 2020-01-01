@@ -1,37 +1,82 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script>
-        if (typeof ue === 'undefined') {
-            // for browser testing outside of game
-            ue = { game: { callevent: console.log } };
-        }
-        (function (obj) {
-            ue.game = {};
-            ue.game.callevent = function (name, ...args) {
-                if (typeof name != "string") {
-                    return;
+<title>htm Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
+<script>
+    if (typeof ue === 'undefined') {
+        // for browser testing outside of game
+        ue = { game: { callevent: console.log } };
+    }
+    (function (obj) {
+        ue.game = {};
+        ue.game.callevent = function (name, ...args) {
+            if (typeof name != "string") {
+                return;
+            }
+            if (args.length == 0) {
+                obj.callevent(name, "")
+            } else {
+                let params = []
+                for (let i = 0; i < args.length; i++) {
+                    params[i] = args[i];
                 }
-                if (args.length == 0) {
-                    obj.callevent(name, "")
-                } else {
-                    let params = []
-                    for (let i = 0; i < args.length; i++) {
-                        params[i] = args[i];
-                    }
-                    obj.callevent(name, JSON.stringify(params));
-                }
-            };
-        })(ue.game);
-        CallEvent = ue.game.callevent;
-    </script>
+                obj.callevent(name, JSON.stringify(params));
+            }
+        };
+    })(ue.game);
+    CallEvent = ue.game.callevent;
+</script>
 </head>
 
-<body>
-    <div class="menu" id="render"></div>
-    <script src="./preact.min.js"></script>
-    <script src="./app.js" type="text/javascript"></script>
-</body>
+<script type="module">
 
+    import { html, Component, render } from './preact_htm.min.js';
+
+    class App extends Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                redeem: 3
+            };
+        }
+
+        componentDidMount() {
+
+        }
+
+        inputChange(e) {
+            const value = e.target.value;
+            this.setState({ redeem: value });
+        }
+
+        submit() {
+            CallEvent('Submit', this.state.redeem);
+        }
+
+        cancel() {
+            CallEvent('HidePanel');
+        }
+
+        render() {
+            return html`
+                <div class="menu" id="render"><div class="atmPage">
+                    <h2>Welcome to the modal</h2>
+                <p>This is a description.</p>
+                <input type="range"
+                    value="${this.state.redeem}"
+                    min="1"
+                    max="5"
+                    oninput="${this.inputChange.bind(this)}" />
+                <div class"redeemTitle">Redeeming: ${this.state.redeem} Points</div>
+                <button class="submit" onclick="${this.submit.bind(this)}">Submit</button>
+                <button class="cancel" onclick="${this.cancel.bind(this)}">Cancel</button>
+            </div></div>
+            `;
+        }
+    }
+
+    render(html`<${App} />`, document.body);
+</script>
+<link rel="stylesheet" type="text/css" href="./style.css" />
 </html>

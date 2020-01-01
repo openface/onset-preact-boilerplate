@@ -8,9 +8,8 @@
         "server.lua"
     ],
     "files": [
-        "html/app.js",
         "html/index.html",
-        "html/preact.min.js",
+        "html/preact_htm.min.js",
         "html/style.css"
     ]
 }

@@ -12,9 +12,8 @@ function OnKeyPress(key)
 end
 AddEvent("OnKeyPress", OnKeyPress)
 
-
 function ShowPanel()
-	webview = CreateWebUI(0.0, 0.0, 0.0, 0.0, 4, 32)
+	webview = CreateWebUI(0, 0, 0, 100)
 	LoadWebFile(webview, "http://asset/"..GetPackageName().."/html/index.html")
 	SetWebAlignment(webview, 0.0, 0.0)
 	SetWebAnchors(webview, 0.0, 0.0, 1.0, 1.0)
