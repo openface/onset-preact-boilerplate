@@ -31,27 +31,30 @@
     import { html, Component, render } from './preact_htm.min.js';
 
     class App extends Component {
-        constructor(props) {
-            super(props);
+        componentDidMount() {
             this.state = {
+                first_name: '',
+                last_name: '',
                 cash: 3
             };
         }
 
-        componentDidMount() {
+        handleInputChange(event) {
+            const target = event.target;
+            const value = target.type === 'checkbox' ? target.checked : target.value;
+            const name = target.name;
 
+            this.setState({
+                [name]: value
+            });
         }
 
-        inputChange(e) {
-            const value = e.target.value;
-            this.setState({ cash: value });
+        handleSubmit(e) {
+            e.preventDefault();
+            CallEvent('panel:Submit', JSON.stringify(this.state));
         }
 
-        submit() {
-            CallEvent('panel:Submit', this.state.cash);
-        }
-
-        cancel() {
+        handleCancel() {
             CallEvent('panel:HidePanel');
         }
 
@@ -63,21 +66,25 @@
                     <p>This is a description.</p>
                     <div>
                         <label for="first_name">First Name</label>
-                        <input type="text" id="first_name" name="first_name" />
+                        <input type="text" id="first_name" name="first_name" 
+                            onChange="${this.handleInputChange.bind(this)}"
+                            value="${this.state.first_name}" />
                     </div>
                     <div>
                         <label for="last_name">Last Name</label>
-                        <input type="text" id="last_name" name="last_name" />
+                        <input type="text" id="last_name" name="last_name" 
+                            onChange="${this.handleInputChange.bind(this)}"
+                            value="${this.state.last_name}" />
                     </div>
                     <div>
                         <label for="cash">Starting Cash: $${this.state.cash}</label>
                         <input type="range" id="cash" name="cash" min="1" max="5"
-                            value="${this.state.cash}"
-                            oninput="${this.inputChange.bind(this)}" />
+                            onInput="${this.handleInputChange.bind(this)}"
+                            value="${this.state.cash}" />
                     </div>
                     <div>
-                        <button class="submit" onclick="${this.submit.bind(this)}">Submit</button>
-                        <button class="cancel" onclick="${this.cancel.bind(this)}">Cancel</button>
+                        <button class="submit" onClick="${this.handleSubmit.bind(this)}">Submit</button>
+                        <button class="cancel" onClick="${this.handleCancel.bind(this)}">Cancel</button>
                     </div>
                 </form>
             </div>

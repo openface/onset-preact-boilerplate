@@ -30,8 +30,8 @@ function HidePanel()
 end
 AddEvent("panel:HidePanel", HidePanel)
 
-function Submit(points)
-	CallRemoteEvent('panel:Submit', points);
+function Submit(params)
+	CallRemoteEvent('panel:Submit', params);
 	CallEvent("panel:HidePanel")
 end
 AddEvent("panel:Submit", Submit)
