@@ -31,7 +31,8 @@
     import { html, Component, render } from './preact_htm.min.js';
 
     class App extends Component {
-        componentDidMount() {
+        constructor(props) {
+            super(props);
             this.state = {
                 first_name: '',
                 last_name: '',
