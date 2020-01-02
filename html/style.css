@@ -20,18 +20,23 @@ html {
     align-content: center;
 }
 
+#render form {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border: 1px solid #000;
+    box-shadow: 2px 2px 4px #000000;
+}
+
 #render form h2 {
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     margin-top:0;
     margin-bottom: 20px;
 }
 
-#render form {
-    width: 100%;
-    background: #333333;
-    padding: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+#render form p {
+    font-size: 12px;
 }
 
 #render form div {
@@ -44,6 +49,7 @@ html {
     order: 1;
     width: 10em;
     padding-right: 0.5em;
+    text-align: right;
     font-weight: bold;
 }
 
@@ -61,11 +67,14 @@ input, textarea, select {
 }
 
 button {
-    padding:5px;
-    background:#4CAF50;
-    color:#fff;
+    padding:10px;
+    background:#21A0A0;
+    color:#FCFFF7;
     flex: 1 1 auto;
     margin:0 5px;
+    border:1px solid #046865;
+    text-transform:uppercase;
+    font-weight:bold;
 }
 
 button:hover {

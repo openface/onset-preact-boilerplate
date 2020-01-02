@@ -1,7 +1,6 @@
 webview = nil
 
 function OnKeyPress(key)
-    AddPlayerChat('testing ... '..key)
 	if key == "F1" then
 		if webview == nil then
         	ShowPanel()
